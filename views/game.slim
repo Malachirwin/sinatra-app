@@ -1,0 +1,31 @@
+- $data_base[client_number].game.players.each {|pl| pl.sort_hand}
+javascript:
+- if $data_base[client_number].game.players[1].cards_left == 1
+  javascript:
+    playersUno("player 2");
+- if $data_base[client_number].game.players[2].cards_left == 1
+  javascript:
+    playersUno("player 3");
+- if $data_base[client_number].game.players[3].cards_left == 1
+  javascript:
+    playersUno("player 4");
+
+- winner = $data_base[client_number].game.game_over?
+/ div id="myAnimation" onclick="myMoveLeft()"
+- if winner != false
+  == slim :winner, locals: { winner: winner }
+-else
+  .player_top
+    == slim :hand, locals: { player: $data_base[client_number].game.players[2], side: "top" }
+  .side-right
+    == slim :hand, locals: { player: $data_base[client_number].game.players[3], side: "right" }
+  .side-left
+    == slim :hand, locals: { player: $data_base[client_number].game.players[1], side: "left"}
+  .playing_space
+    == slim :center_pile, locals: { game: $data_base[client_number].game, message: $data_base[client_number].message}
+  br
+  center
+    == slim :results, locals: { result: $data_base[client_number].result}
+    == slim :change_color_form, locals: { message: $data_base[client_number].message}
+    == slim :your_hand, locals: { game: $data_base[client_number].game, player: $data_base[client_number].player_name, message: $data_base[client_number].message}
+    == slim :game_log, locals: { what_happened: $data_base[client_number].what_happened}

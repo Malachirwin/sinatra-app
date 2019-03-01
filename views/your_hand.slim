@@ -1,0 +1,26 @@
+- if message != "What Color do You want to change it to?"
+  -if message.class == Card
+    h1 = "You played a #{message.card_value}"
+  -elsif message.class == Array
+    h1 = "You drew #{message[0].card_value}"
+  -else
+    h1 = message
+
+-if game.class == Game
+  form method="post" action="uno"
+    input name="uno" type="hidden" value="yes"
+    input name="client_number" type="hidden" value=client_number
+    input style="font-size: 30px;" type="submit" class="button" value="uno"
+-else
+  form method="post" action="crazy_uno"
+    input name="uno" type="hidden" value="yes"
+    input style="font-size: 30px;" type="submit" class="button" value="uno"
+h3 style="font-size: 30px;" It is your turn
+h1 = game.direction
+h1[style="display: inline-block"] = player
+h1[style="display: inline-block"] 's hand
+br
+.hand
+  - game.player.player_hand.each do |card|
+    img class="player_card" width=90 height=120 src="cards/#{card.to_img_path}" alt=card.value onclick="playCard('#{card.value}','#{client_number}')"
+br
