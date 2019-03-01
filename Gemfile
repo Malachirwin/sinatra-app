@@ -12,6 +12,10 @@ gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
 gem 'sinatra-flash'
+gem 'slim'
+group :production do
+  gem 'pg', '0.20.0'
+end
 
 gem 'capybara'
 gem 'sinatra-contrib'
@@ -24,4 +28,10 @@ group :test do
   gem 'capybara-selenium'
   gem "selenium-webdriver"
   gem 'chromedriver-helper'
+end
+
+group :development, :test do
+  gem 'sqlite3', '~> 1.3.6'
+  gem 'redis'
+  gem 'byebug',  '9.0.6', platform: :mri
 end
