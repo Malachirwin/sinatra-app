@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 # gem "rails"
 gem 'sinatra'
+gem 'thin'
 gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
